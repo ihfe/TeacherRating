@@ -8,11 +8,11 @@
 
 ### Professor Part
 
-![111](images\111.png)
+![111](images/111.png)
 
 ### Class Part
 
-![222](images\222.png)
+![222](images/222.png)
 
 ### 
 
