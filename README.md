@@ -1,21 +1,20 @@
 # TeacherRating
 
-教师评分管理系统
+## 
 
-## 使用说明
+[UserGuide](UserGuide.md): How to run this Project?
 
-[使用说明](UserGuide.md)
+## Part of Project
 
-## 项目展示
+### Professor Part
 
-### 基础信息管理
+![335365e9558e9fed2c9c9f13e376ed0](D:\Documents\WeChat Files\wxid_qjrvcln2y3pg22\FileStorage\Temp\335365e9558e9fed2c9c9f13e376ed0.png)
 
-![基础信息](images/demo1.png)
+### Class Part
 
-### 事件创建
+![6b0dfbe34734ccbc88ebea5c3831da1](D:\Documents\WeChat Files\wxid_qjrvcln2y3pg22\FileStorage\Temp\6b0dfbe34734ccbc88ebea5c3831da1.png)
 
-![事件信息](images/demo2.png)
+### 
 
-### 问卷
 
-![问卷信息](images/demo3.png)
+
