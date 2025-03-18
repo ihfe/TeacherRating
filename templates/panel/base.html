@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminlte/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminlte/css/skins/_all-skins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'datatable/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+    {% block link %}{% endblock %}
+    <script src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>
+</head>
+<body class="skin-black-light sidebar-mini">
+<div class="wrapper">
+    {% include 'header.html' %}
+    {% include 'panel/sidebar.html' %}
+    <div class="content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'footer.html' %}
+</div>
+
+
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'datatable/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'datatable/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'adminlte/js/adminlte.min.js' %}"></script>
+<script src="{% static 'common/common.js' %}"></script>
+<script>
+    $('table').DataTable();
+</script>
+{% block script %}{% endblock %}
+</body>
+</html>

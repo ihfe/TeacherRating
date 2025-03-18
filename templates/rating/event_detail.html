@@ -1,0 +1,55 @@
+{% extends 'rating/base.html' %}
+{% block title %}Event Details{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <h1>
+            {{ rating_event.title }}
+            <small>{{ rating_event.description }}</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        Basic Information
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-6">
+                            <ul>
+                                <li><label>Created Time: </label><span>{{ rating_event.create_time }}</span></li>
+                                <li><label>Event Status: </label><span>{% if rating_event.status == 0 %}Ongoing
+                                {% else %}Completed{% endif %}</span></li>
+                                <li><label>Voting Type: </label><span>{% if rating_event.vote_type == 0 %}Anonymous Voting{% else %}
+                                    Named Voting{% endif %}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        Detailed Information
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <ul>
+                                <li><label>Class Table: </label><a class="btn btn-primary"
+                                                           href="{% url 'rating:detail_class' %}?event_id={{ rating_event.event_id }}">Details</a>
+                                </li>
+                                <li><label>Teacher Table: </label><a class="btn btn-primary"
+                                                           href="{% url 'rating:detail_answer' %}?event_id={{ rating_event.event_id }}">Details</a>
+                                </li>
+                                <li><label>Teacher Average Score Table: </label><a class="btn btn-primary"
+                                                           href="{% url 'rating:detail_aver' %}?event_id={{ rating_event.event_id }}">Details</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

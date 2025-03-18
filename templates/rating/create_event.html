@@ -1,0 +1,132 @@
+{% extends 'rating/create_base.html' %}
+{% block content %}
+    <section class="content">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">create event</h3>
+                    </div>
+                    <div class="box-body">
+                        <input class="btn btn-warning" type="submit" value="创建">
+                        <div class="form-group">
+                            <label>event name:</label>
+                            <input type="text" class="form-control" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>number of votes per item:</label>
+                            <input type="number" class="form-control" name="votes" required value="10">
+                        </div>
+                        <div class="form-group">
+                            <label>Voting type(just anonymous form):</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="vote_type" id="optionsRadios1" value="0" checked="">
+                                    Anonymous form
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="vote_type" id="optionsRadios2" value="1" disabled="">
+                                    registered form
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>reference:</label>
+                            <input type="text" class="form-control" name="description">
+                        </div>
+                        <input type="hidden" name="classification" value="classification_class">
+                        <div class="nav-tabs-custom">
+                            <label>way of classification</label>
+                            <ul class="nav nav-tabs">
+                                <li class="active" onclick="clickClassificationLi('classification_class')"><a
+                                        href="#tab_1"
+                                        data-toggle="tab"
+                                        aria-expanded="true">class</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <b>all class:</b>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>class</th>
+                                            <th>class reference</th>
+                                            <th>choose</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for a_class in all_class %}
+                                            <tr>
+                                                <td>{{ a_class.class_id }}</td>
+                                                <td>{{ a_class.title }}</td>
+                                                <td>{{ a_class.description }}</td>
+                                                <td><input name="check_class_{{ a_class.class_id }}" type="checkbox"></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">rating items</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 40px"><input id="select_all_checkbox" type="checkbox"></th>
+                                <th>#</th>
+                                <th>name</th>
+                                <th>reference</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in all_item %}
+                                <tr>
+                                    <td><input class="choose_box" type="checkbox" name="item_{{ item.item_id }}">
+                                    <td>{{ item.item_id }}</td>
+                                    <td>{{ item.title }}</td>
+                                    <td>{{ item.description }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock %}
+{% block script %}
+    <script>
+        $('#select_all_checkbox').click(function () {
+            if ($(this).is(':checked')) {
+                $(".choose_box").each(function () {
+                    //此处如果用attr，会出现第三次失效的情况
+                    $(this).prop("checked", true);
+                });
+            } else {
+                $(".choose_box").each(function () {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+
+        function clickClassificationLi(classification_type) {
+
+        }
+    </script>
+{% endblock %}

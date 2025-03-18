@@ -1,0 +1,78 @@
+{% extends 'rating/base.html' %}
+{% block title %}Event Management{% endblock %}
+{% block content %}
+    <section class="content">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Event Overview</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-danger" onclick="deleteSelectEvent();">
+                        <i class="fa fa-trash"></i> Delete Event
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="createRatingEvent()">
+                        <i class="fa fa-plus"></i> Add Event
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form id="delete_form" action="{% url 'rating:delete_event' %}" method="post">
+                    {% csrf_token %}
+                    <table class="table dataTable">
+                        <thead>
+                        <tr>
+                            <th style="width: 40px"><input id="select_all_checkbox" type="checkbox"></th>
+                            <th>#</th>
+                            <th>Event Name</th>
+                            <th>Event Status</th>
+                            <th>Rating Type</th>
+                            <th>Creation Time</th>
+                            <th>Remarks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a_event in all_event %}
+                            <tr class="pointer_tr">
+                                <td><input class="choose_box" type="checkbox" name="check_{{ a_event.event_id }}"></td>
+                                <td class="pointer_td" onclick="clickEventDetail({{ a_event.event_id }})">{{ a_event.event_id }}</td>
+                                <td class="pointer_td" onclick="clickEventDetail({{ a_event.event_id }})">{{ a_event.title }}</td>
+                                <td class="pointer_td" onclick="clickEventDetail({{ a_event.event_id }})">
+                                    {% if a_event.status == 0 %}Ongoing{% else %}Completed{% endif %}
+                                </td>
+                                <td class="pointer_td" onclick="clickEventDetail({{ a_event.event_id }})">
+                                    {% if a_event.vote_type == 0 %}Anonymous{% else %}Named{% endif %}
+                                </td>
+                                <td class="pointer_td" onclick="clickEventDetail({{ a_event.event_id }})">{{ a_event.create_time }}</td>
+                                <td class="pointer_td" onclick="clickEventDetail({{ a_event.event_id }})">
+                                    {% if a_event.description != None %}{{ a_event.description }}{% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+    <script>
+        $('#select_all_checkbox').click(function () {
+            $(".choose_box").prop("checked", $(this).is(':checked'));
+        });
+
+        function deleteSelectEvent() {
+            $('#delete_form').submit();
+        }
+
+        function createRatingEvent() {
+            var new_url = "{% url 'rating:create_event' %}";
+            window.location.href = new_url;
+        }
+
+        function clickEventDetail(event_id) {
+            var new_url = "{% url 'rating:event_detail' %}?event_id=" + event_id.toString();
+            window.location.href = new_url;
+        }
+    </script>
+{% endblock %}

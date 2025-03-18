@@ -1,0 +1,39 @@
+<aside class="main-sidebar" style="background-color: #2c3e50; color: white;">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree" style="padding: 10px;">
+            <li class="header" style="font-size: 16px; font-weight: bold; text-transform: uppercase; padding: 10px 15px; border-bottom: 1px solid #34495e;">Features</li>
+            <li id="side_event" style="border-radius: 5px;">
+                <a href="{% url 'rating:event_admin' %}" style="color: white; padding: 12px; display: flex; align-items: center;">
+                    <i class="fa fa-microchip" style="margin-right: 10px;"></i> <span>Event Management</span>
+                </a>
+            </li>
+            <li id="side_item" style="border-radius: 5px;">
+                <a href="{% url 'rating:item_admin' %}" style="color: white; padding: 12px; display: flex; align-items: center;">
+                    <i class="fa fa-microchip" style="margin-right: 10px;"></i> <span>Rating Item Management</span>
+                </a>
+            </li>
+            <li id="side_report" style="border-radius: 5px;">
+                <a href="{% url 'panel:lesson_admin' %}" style="color: white; padding: 12px; display: flex; align-items: center;">
+                    <i class="fa fa-link" style="margin-right: 10px;"></i> <span>Report Analysis</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>
+<script type="text/javascript">
+    var link = window.location.pathname;
+    var parts = link.split('/');
+    switch (parts[2]) {
+        case "event_admin":
+            $('#side_event').css("background-color", "#1abc9c");
+            break;
+        case "report_admin":
+            $('#side_report').css("background-color", "#1abc9c");
+            break;
+        case "item_admin":
+            $('#side_item').css("background-color", "#1abc9c");
+            break;
+        default:
+            break;
+    }
+</script>
